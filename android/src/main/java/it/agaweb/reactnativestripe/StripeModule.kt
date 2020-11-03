@@ -52,7 +52,7 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
   }
 
   @ReactMethod
-  fun init(publishableKey: String) {
+  fun initModule(publishableKey: String) {
     PaymentConfiguration.init(
       reactApplicationContext,
       publishableKey

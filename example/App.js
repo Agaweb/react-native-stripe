@@ -11,7 +11,7 @@ import stripe from '@agaweb/react-native-stripe';
 
 import configuration from './configuration.json';
 
-stripe.init(configuration.publishableKey);
+stripe.initModule(configuration.publishableKey);
 
 const App = () => {
   const [number, setNumber] = useState('4242424242424242');
