@@ -3,20 +3,18 @@ import {
   View,
   Text,
   TouchableOpacity,
-  TextInput,
   StyleSheet,
 } from 'react-native';
 
-import stripe from '@agaweb/react-native-stripe';
+import stripe, {StripeCardInputWidget} from '@agaweb/react-native-stripe';
 
 import configuration from './configuration.json';
 
 stripe.initModule(configuration.publishableKey);
 
 const App = () => {
-  const [number, setNumber] = useState('4242424242424242');
-  const [exp, setExp] = useState('12/22');
-  const [cvc, setCvc] = useState('222');
+  const [isValid, setIsValid] = useState(false);
+  const [cardParams, setCardParams] = useState(undefined);
 
   const pay = () => {
     fetch(
@@ -33,13 +31,12 @@ const App = () => {
         if (response.error) {
           alert(response.error.message);
         } else if (response.client_secret) {
-          let expSplitted = exp.split('/');
           stripe
             .confirmPaymentWithCard(response.client_secret, {
-              number,
-              expMonth: parseInt(expSplitted[0]),
-              expYear: parseInt(expSplitted[1]),
-              cvc: cvc,
+              number: cardParams.number,
+              expMonth: cardParams.exp_month,
+              expYear: cardParams.exp_year,
+              cvc: cardParams.cvc,
             })
             .then(() => {
               alert('Paid');
@@ -58,47 +55,22 @@ const App = () => {
         justifyContent: 'center',
         paddingHorizontal: 20,
       }}>
-      <View style={{flexDirection: 'row'}}>
-        <TextInput
-          style={[
-            style.input,
-            {
-              width: '60%',
-            },
-          ]}
-          placeholder="Card number"
-          value={number}
-          onChangeText={(text) => setNumber(text)}
-        />
-        <TextInput
-          style={[
-            style.input,
-            {
-              flex: 1,
-              marginLeft: 5,
-            },
-          ]}
-          placeholder=""
-          value={exp}
-          onChangeText={(text) => setExp(text)}
-        />
-        <TextInput
-          style={[
-            style.input,
-            {
-              flex: 1,
-              marginLeft: 5,
-            },
-          ]}
-          placeholder=""
-          value={cvc}
-          onChangeText={(text) => setCvc(text)}
+      <View>
+        <StripeCardInputWidget
+          onCardValidCallback={({isValid, cardParams}) => {
+            setIsValid(isValid)
+            setCardParams(cardParams)
+          }}
+          style={{
+            marginBottom: 30,
+          }}
         />
       </View>
       <TouchableOpacity
         onPress={pay}
+        disabled={!isValid}
         style={{
-          backgroundColor: 'black',
+          backgroundColor: isValid ? 'black' : 'gray',
           alignItems: 'center',
           justifyContent: 'center',
           paddingVertical: 15,

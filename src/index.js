@@ -1,5 +1,7 @@
 import { NativeModules } from 'react-native';
-const {
-  AgawebStripe
-} = NativeModules;
+import StripeCardInputWidget from './StripeCardInputWidget';
+const { AgawebStripe } = NativeModules;
+
+export { StripeCardInputWidget };
+
 export default AgawebStripe;
