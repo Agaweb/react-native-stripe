@@ -11,6 +11,13 @@ class RNTStripeCardInputView: STPPaymentCardTextField, STPPaymentCardTextFieldDe
     @objc
     var onCardValidCallback: RCTBubblingEventBlock?
     
+    @objc
+    var onFocusChange: RCTBubblingEventBlock?
+    
+    func paymentCardTextFieldDidBeginEditing(_ textField: STPPaymentCardTextField) {
+        onFocusChange!(nil)
+    }
+    
     func paymentCardTextFieldDidChange(_ textField: STPPaymentCardTextField){
         var params = Dictionary<String, AnyHashable>()
         params["isValid"] = textField.isValid
