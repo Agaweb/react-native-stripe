@@ -25,36 +25,14 @@ class ReactCardMultilineView(context: Context) : FrameLayout(context) {
 
       if (isValid) {
         val params = Arguments.createMap()
-        cardMultilineWidget.cardParams!!.typeDataParams.forEach {
-          if (it.value is String) {
-            params.putString(it.key, it.value as String)
-          }
+        val typeDataParams = cardMultilineWidget.cardParams!!.typeDataParams
 
-          if (it.value is Boolean) {
-            params.putBoolean(it.key, it.value as Boolean)
-          }
-
-          if (it.value is Int) {
-            params.putInt(it.key, it.value as Int)
-          }
-
-          if (it.value is Double) {
-            params.putDouble(it.key, it.value as Double)
-          }
-        }
+        params.putString("number", typeDataParams.get("number") as String)
+        params.putInt("expMonth", typeDataParams.get("exp_month") as Int)
+        params.putInt("expYear", typeDataParams.get("exp_year") as Int)
+        params.putString("cvc", typeDataParams.get("cvc") as String)
 
         event.putMap("cardParams", params)
-      } else {
-        /*
-        Couldn't find it on iOS so disabled here
-        
-        val fields = Arguments.createArray()
-
-        invalidFields.forEach {
-          fields.pushString(it.name)
-        }
-
-        event.putArray("invalidFields", fields)*/
       }
 
       (context as ReactContext).getJSModule(RCTEventEmitter::class.java).receiveEvent(id, "onCardValidCallback", event)

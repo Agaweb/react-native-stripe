@@ -64,13 +64,11 @@ const App = () => {
         <StripeCardInputWidget
           ref={cardRef}
           onCardValidCallback={({isValid, cardParams}) => {
-            console.log(isValid, cardParams);
             setIsValid(isValid);
             setCardParams(cardParams);
           }}
           style={{
-            marginBottom: 30,
-            height: 50,
+            marginBottom: 30
           }}
         />
         <TouchableOpacity

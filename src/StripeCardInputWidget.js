@@ -9,6 +9,7 @@ import {
   Platform,
   TouchableWithoutFeedback,
   UIManager,
+  StyleSheet,
 } from 'react-native';
 import StripeCardInputWidgetNative from './nativeComponents/StripeCardInputWidgetNative';
 const TextInputState = require('react-native/Libraries/Components/TextInput/TextInputState');
@@ -79,13 +80,23 @@ const StripeCardInputWidget = (props, ref) => {
       }}
     >
       <StripeCardInputWidgetNative
-        ref={inputRef}
         {...props}
+        style={[styles.cardInputWidget, props.style]}
+        ref={inputRef}
         onCardValidCallback={_onCardValidCallback}
       />
     </TouchableWithoutFeedback>
   );
 };
+
+const styles = StyleSheet.create({
+  cardInputWidget: Platform.select({
+    ios: {
+      height: 50,
+    },
+    default: {},
+  }),
+});
 
 const StripeCardInputWidgetWithRef = forwardRef(StripeCardInputWidget);
 
