@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2B1A2C1725597AA10078C9EA /* RNTStripeCardInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A2C1625597AA10078C9EA /* RNTStripeCardInputManager.m */; };
 		2B1A2C1A25597BBB0078C9EA /* RNTStripeCardInputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A2C1925597BBB0078C9EA /* RNTStripeCardInputManager.swift */; };
+		2B1C8D58255BDA20007A8AFA /* RNTStripeCardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C8D57255BDA1F007A8AFA /* RNTStripeCardInputView.swift */; };
+		2B1C8D5A255BDA8D007A8AFA /* AgawebStripe.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* AgawebStripe.m */; };
 		F4FF95D7245B92E800C19C63 /* AgawebStripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* AgawebStripe.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,7 @@
 		134814201AA4EA6300B7C361 /* libAgawebStripe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAgawebStripe.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B1A2C1625597AA10078C9EA /* RNTStripeCardInputManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTStripeCardInputManager.m; sourceTree = "<group>"; };
 		2B1A2C1925597BBB0078C9EA /* RNTStripeCardInputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNTStripeCardInputManager.swift; sourceTree = "<group>"; };
+		2B1C8D57255BDA1F007A8AFA /* RNTStripeCardInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNTStripeCardInputView.swift; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* AgawebStripe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgawebStripe.m; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* AgawebStripe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AgawebStripe-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* AgawebStripe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgawebStripe.swift; sourceTree = "<group>"; };
@@ -55,6 +58,7 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				2B1C8D57255BDA1F007A8AFA /* RNTStripeCardInputView.swift */,
 				2B1A2C1925597BBB0078C9EA /* RNTStripeCardInputManager.swift */,
 				2B1A2C1625597AA10078C9EA /* RNTStripeCardInputManager.m */,
 				F4FF95D6245B92E800C19C63 /* AgawebStripe.swift */,
@@ -121,9 +125,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B1C8D5A255BDA8D007A8AFA /* AgawebStripe.m in Sources */,
 				2B1A2C1725597AA10078C9EA /* RNTStripeCardInputManager.m in Sources */,
 				2B1A2C1A25597BBB0078C9EA /* RNTStripeCardInputManager.swift in Sources */,
 				F4FF95D7245B92E800C19C63 /* AgawebStripe.swift in Sources */,
+				2B1C8D58255BDA20007A8AFA /* RNTStripeCardInputView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
