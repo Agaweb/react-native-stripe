@@ -21,34 +21,32 @@ const StripeCardInputWidget = (props, ref) => {
     props.onCardValidCallback(event.nativeEvent);
   };
 
+  const _onFocusChange = () => {
+    TextInputState.focusInput(inputRef.current)
+  };
+
   const focus = () => {
-    if (Platform.OS === 'ios') {
-      UIManager.dispatchViewManagerCommand(
-        findNodeHandle(inputRef.current),
-        UIManager.getViewManagerConfig('RNTStripeCardInput').Commands.focus,
-        []
-      );
-    }
+    UIManager.dispatchViewManagerCommand(
+      findNodeHandle(inputRef.current),
+      'focus',
+      []
+    );
   };
 
   const blur = () => {
-    if (Platform.OS === 'ios') {
-      UIManager.dispatchViewManagerCommand(
-        findNodeHandle(inputRef.current),
-        UIManager.getViewManagerConfig('RNTStripeCardInput').Commands.blur,
-        []
-      );
-    }
+    UIManager.dispatchViewManagerCommand(
+      findNodeHandle(inputRef.current),
+      'blur',
+      []
+    );
   };
 
   const clear = () => {
-    if (Platform.OS === 'ios') {
-      UIManager.dispatchViewManagerCommand(
-        findNodeHandle(inputRef.current),
-        UIManager.getViewManagerConfig('RNTStripeCardInput').Commands.clear,
-        []
-      );
-    }
+    UIManager.dispatchViewManagerCommand(
+      findNodeHandle(inputRef.current),
+      'clear',
+      []
+    );
   };
 
   useImperativeHandle(ref, () => ({
@@ -74,16 +72,13 @@ const StripeCardInputWidget = (props, ref) => {
   }, [inputRef]);
 
   return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        TextInputState.focusInput(inputRef.current);
-      }}
-    >
+    <TouchableWithoutFeedback>
       <StripeCardInputWidgetNative
         {...props}
         style={[styles.cardInputWidget, props.style]}
         ref={inputRef}
         onCardValidCallback={_onCardValidCallback}
+        onFocusChange={_onFocusChange}
       />
     </TouchableWithoutFeedback>
   );

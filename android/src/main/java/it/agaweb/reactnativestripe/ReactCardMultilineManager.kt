@@ -1,5 +1,6 @@
 package it.agaweb.reactnativestripe
 
+import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.BaseViewManager
 import com.facebook.react.uimanager.ThemedReactContext
@@ -13,6 +14,14 @@ class ReactCardMultilineManager : BaseViewManager<ReactCardMultilineView, ReactC
 
   override fun getName(): String {
     return REACT_CLASS
+  }
+
+  override fun receiveCommand(root: ReactCardMultilineView, commandId: String?, args: ReadableArray?) {
+    when (commandId) {
+      "focus" -> root.requestFocusFromJS()
+      "blur" -> root.requestBlurFromJS()
+      "clear" -> root.requestClearFromJS()
+    }
   }
 
   override fun createShadowNodeInstance(): ReactCardMultilineShadowNode {
@@ -30,6 +39,7 @@ class ReactCardMultilineManager : BaseViewManager<ReactCardMultilineView, ReactC
   override fun getExportedCustomBubblingEventTypeConstants(): MutableMap<String, Any> {
     return MapBuilder.builder<String, Any>()
       .put("onCardValidCallback", MapBuilder.of("phasedRegistrationNames", MapBuilder.of("bubbled", "onCardValidCallback")))
+      .put("onFocusChange", MapBuilder.of("phasedRegistrationNames", MapBuilder.of("bubbled", "onFocusChange")))
       .build()
   }
 }
