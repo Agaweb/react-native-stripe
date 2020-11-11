@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 
 import stripe, {StripeCardInputWidget} from '@agaweb/react-native-stripe';
@@ -13,6 +14,7 @@ import configuration from './configuration.json';
 stripe.initModule(configuration.publishableKey);
 
 const App = () => {
+  const cardRef = useRef(null);
   const [isValid, setIsValid] = useState(false);
   const [cardParams, setCardParams] = useState(undefined);
 
@@ -34,8 +36,8 @@ const App = () => {
           stripe
             .confirmPaymentWithCard(response.client_secret, {
               number: cardParams.number,
-              expMonth: cardParams.exp_month,
-              expYear: cardParams.exp_year,
+              expMonth: cardParams.expMonth,
+              expYear: cardParams.expYear,
               cvc: cardParams.cvc,
             })
             .then(() => {
@@ -49,53 +51,49 @@ const App = () => {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        paddingHorizontal: 20,
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
       }}>
-      <View>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          paddingHorizontal: 20,
+        }}>
         <StripeCardInputWidget
+          ref={cardRef}
           onCardValidCallback={({isValid, cardParams}) => {
-            setIsValid(isValid)
-            setCardParams(cardParams)
+            console.log(isValid, cardParams);
+            setIsValid(isValid);
+            setCardParams(cardParams);
           }}
           style={{
             marginBottom: 30,
+            height: 50,
           }}
         />
-      </View>
-      <TouchableOpacity
-        onPress={pay}
-        disabled={!isValid}
-        style={{
-          backgroundColor: isValid ? 'black' : 'gray',
-          alignItems: 'center',
-          justifyContent: 'center',
-          paddingVertical: 15,
-          borderRadius: 10,
-        }}>
-        <Text
+        <TouchableOpacity
+          onPress={pay}
+          disabled={!isValid}
           style={{
-            color: 'white',
-            fontSize: 20,
+            backgroundColor: isValid ? 'black' : 'gray',
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingVertical: 15,
+            borderRadius: 10,
           }}>
-          Pay
-        </Text>
-      </TouchableOpacity>
-    </View>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 20,
+            }}>
+            Pay
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
-
-const style = StyleSheet.create({
-  input: {
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 7,
-    padding: 10,
-    marginBottom: 20,
-  },
-});
 
 export default App;

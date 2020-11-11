@@ -5,7 +5,7 @@ import com.facebook.react.uimanager.BaseViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 
 class ReactCardMultilineManager : BaseViewManager<ReactCardMultilineView, ReactCardMultilineShadowNode>() {
-  val REACT_CLASS = "RCTStripeCardInputWidget"
+  val REACT_CLASS = "RNTStripeCardInput"
 
   override fun createViewInstance(reactContext: ThemedReactContext): ReactCardMultilineView {
     return ReactCardMultilineView(reactContext)

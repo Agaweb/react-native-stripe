@@ -45,13 +45,16 @@ class ReactCardMultilineView(context: Context) : FrameLayout(context) {
 
         event.putMap("cardParams", params)
       } else {
+        /*
+        Couldn't find it on iOS so disabled here
+        
         val fields = Arguments.createArray()
 
         invalidFields.forEach {
           fields.pushString(it.name)
         }
 
-        event.putArray("invalidFields", fields)
+        event.putArray("invalidFields", fields)*/
       }
 
       (context as ReactContext).getJSModule(RCTEventEmitter::class.java).receiveEvent(id, "onCardValidCallback", event)

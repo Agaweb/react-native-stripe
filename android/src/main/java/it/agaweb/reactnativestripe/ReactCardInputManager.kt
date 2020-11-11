@@ -4,7 +4,7 @@ import com.facebook.react.uimanager.BaseViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 
 class ReactCardInputManager : BaseViewManager<ReactCardInputView, ReactCardInputShadowNode>() {
-  val REACT_CLASS = "RCTStripeCardInputWidget"
+  val REACT_CLASS = "RNTStripeCardInput"
 
   override fun createViewInstance(reactContext: ThemedReactContext): ReactCardInputView {
     return ReactCardInputView(reactContext)
