@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, { useState} from 'react';
 import {
   View,
   Text,
@@ -14,7 +14,6 @@ import configuration from './configuration.json';
 stripe.initModule(configuration.publishableKey);
 
 const App = () => {
-  const cardRef = useRef(null);
   const [isValid, setIsValid] = useState(false);
   const [cardParams, setCardParams] = useState(undefined);
 
@@ -62,7 +61,6 @@ const App = () => {
           paddingHorizontal: 20,
         }}>
         <StripeCardInputWidget
-          ref={cardRef}
           onCardValidCallback={({isValid, cardParams}) => {
             setIsValid(isValid);
             setCardParams(cardParams);
