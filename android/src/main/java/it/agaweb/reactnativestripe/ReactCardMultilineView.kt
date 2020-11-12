@@ -23,6 +23,14 @@ class ReactCardMultilineView(context: Context) : FrameLayout(context) {
     addView(cardMultilineWidget)
   }
 
+  fun setPostalCodeEnabledFromJS(enabled: Boolean){
+    cardMultilineWidget.setShouldShowPostalCode(enabled)
+  }
+
+  fun setEnabledFromJS(enabled: Boolean){
+    cardMultilineWidget.isEnabled = enabled
+  }
+
   fun requestFocusFromJS(){
     cardMultilineWidget.requestFocus()
   }

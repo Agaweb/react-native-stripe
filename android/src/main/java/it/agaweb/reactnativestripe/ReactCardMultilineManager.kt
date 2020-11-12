@@ -4,6 +4,8 @@ import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.BaseViewManager
 import com.facebook.react.uimanager.ThemedReactContext
+import com.facebook.react.uimanager.annotations.ReactProp
+
 
 class ReactCardMultilineManager : BaseViewManager<ReactCardMultilineView, ReactCardMultilineShadowNode>() {
   val REACT_CLASS = "RNTStripeCardInput"
@@ -22,6 +24,16 @@ class ReactCardMultilineManager : BaseViewManager<ReactCardMultilineView, ReactC
       "blur" -> root.requestBlurFromJS()
       "clear" -> root.requestClearFromJS()
     }
+  }
+
+  @ReactProp(name = "enabled", defaultBoolean = true)
+  fun setEnabled(view: ReactCardMultilineView, enabled: Boolean) {
+    view.setEnabledFromJS(enabled)
+  }
+
+  @ReactProp(name = "postalCodeEntryEnabled", defaultBoolean = false)
+  fun setPostalCodeEntryEnabled(view: ReactCardMultilineView, enabled: Boolean) {
+    view.setPostalCodeEnabledFromJS(enabled)
   }
 
   override fun createShadowNodeInstance(): ReactCardMultilineShadowNode {
