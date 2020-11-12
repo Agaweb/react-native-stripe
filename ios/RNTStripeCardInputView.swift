@@ -2,17 +2,15 @@ import Foundation
 import Stripe
 
 class RNTStripeCardInputView: STPPaymentCardTextField, STPPaymentCardTextFieldDelegate {
-    func defaultInitializers(){
-        postalCodeEntryEnabled = false
-        textColor = UIColor.black
-        delegate = self
-    }
-    
     @objc
     var onCardValidCallback: RCTBubblingEventBlock?
     
     @objc
     var onFocusChange: RCTBubblingEventBlock?
+    
+    func defaultInitializers(){
+        delegate = self
+    }
     
     func paymentCardTextFieldDidBeginEditing(_ textField: STPPaymentCardTextField) {
         onFocusChange!(nil)
@@ -28,6 +26,10 @@ class RNTStripeCardInputView: STPPaymentCardTextField, STPPaymentCardTextFieldDe
             cardParams["expMonth"] = textField.expirationMonth
             cardParams["expYear"] = textField.expirationYear
             cardParams["cvc"] = textField.cvc
+            
+            if(postalCodeEntryEnabled){
+                cardParams["postalCode"] = textField.postalCode
+            }
             
             params["cardParams"] = cardParams
         }
