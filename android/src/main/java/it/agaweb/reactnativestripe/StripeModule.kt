@@ -19,27 +19,24 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
   private lateinit var stripe: Stripe
   private val activityListener = object : BaseActivityEventListener() {
     override fun onActivityResult(activity: Activity?, requestCode: Int, resultCode: Int, data: Intent?) {
-      if (paymentPromise != null && stripe != null) {
-
-        // Handle the result of stripe.confirmPayment
-        stripe.onPaymentResult(requestCode, data, object : ApiResultCallback<PaymentIntentResult> {
-          override fun onSuccess(result: PaymentIntentResult) {
-            val paymentIntent = result.intent
-            val status = paymentIntent.status
-            if (status == StripeIntent.Status.Succeeded) {
-              paymentPromise.resolve(null)
-            } else if (status == StripeIntent.Status.Canceled) {
-              paymentPromise.reject("Stripe.Canceled", status.toString())
-            } else {
-              paymentPromise.reject("Stripe.OtherStatus", status.toString())
-            }
+      // Handle the result of stripe.confirmPayment
+      stripe.onPaymentResult(requestCode, data, object : ApiResultCallback<PaymentIntentResult> {
+        override fun onSuccess(result: PaymentIntentResult) {
+          val paymentIntent = result.intent
+          val status = paymentIntent.status
+          if (status == StripeIntent.Status.Succeeded) {
+            paymentPromise.resolve(null)
+          } else if (status == StripeIntent.Status.Canceled) {
+            paymentPromise.reject("Stripe.Canceled", status.toString())
+          } else {
+            paymentPromise.reject("Stripe.OtherStatus", status.toString())
           }
+        }
 
-          override fun onError(e: Exception) {
-            paymentPromise.reject("Stripe.Error", e.toString())
-          }
-        })
-      }
+        override fun onError(e: Exception) {
+          paymentPromise.reject("Stripe.Error", e.toString())
+        }
+      })
     }
   }
 
