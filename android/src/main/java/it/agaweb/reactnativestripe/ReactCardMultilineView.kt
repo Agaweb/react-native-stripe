@@ -23,24 +23,24 @@ class ReactCardMultilineView(context: Context) : FrameLayout(context) {
     addView(cardMultilineWidget)
   }
 
-  fun setPostalCodeEnabledFromJS(enabled: Boolean){
+  fun setPostalCodeEnabledFromJS(enabled: Boolean) {
     cardMultilineWidget.setShouldShowPostalCode(enabled)
   }
 
-  fun setEnabledFromJS(enabled: Boolean){
+  fun setEnabledFromJS(enabled: Boolean) {
     cardMultilineWidget.isEnabled = enabled
   }
 
-  fun requestFocusFromJS(){
+  fun requestFocusFromJS() {
     cardMultilineWidget.requestFocus()
   }
 
-  fun requestBlurFromJS(){
+  fun requestBlurFromJS() {
     mInputMethodManager.hideSoftInputFromWindow(windowToken, 0)
     cardMultilineWidget.clearFocus()
   }
 
-  fun requestClearFromJS(){
+  fun requestClearFromJS() {
     cardMultilineWidget.clear()
   }
 
@@ -59,13 +59,16 @@ class ReactCardMultilineView(context: Context) : FrameLayout(context) {
         params.putInt("expYear", typeDataParams.get("exp_year") as Int)
         params.putString("cvc", typeDataParams.get("cvc") as String)
 
+        if (typeDataParams.get("address_zip") != null)
+          params.putString("postalCode", typeDataParams.get("address_zip") as String)
+
         event.putMap("cardParams", params)
       }
 
       (context as ReactContext).getJSModule(RCTEventEmitter::class.java).receiveEvent(id, "onCardValidCallback", event)
     }
 
-    val cardInputListener = object: CardInputListener {
+    val cardInputListener = object : CardInputListener {
       override fun onCardComplete() {
         //
       }

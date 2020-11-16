@@ -27,7 +27,7 @@ class RNTStripeCardInputView: STPPaymentCardTextField, STPPaymentCardTextFieldDe
             cardParams["expYear"] = textField.expirationYear
             cardParams["cvc"] = textField.cvc
             
-            if(postalCodeEntryEnabled){
+            if(textField.postalCode != nil){
                 cardParams["postalCode"] = textField.postalCode
             }
             
