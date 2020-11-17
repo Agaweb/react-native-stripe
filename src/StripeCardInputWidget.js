@@ -74,8 +74,8 @@ const StripeCardInputWidget = (props, ref) => {
   return (
     <TouchableWithoutFeedback>
       <StripeCardInputWidgetNative
-	postalCodeEntryEnabled={false}
         {...props}
+        postalCodeEntryEnabled={!!props.postalCodeEntryEnabled}
         style={[styles.cardInputWidget, Object.assign({}, props.style)]}
         textColor={props.cardInputStyle ? props.cardInputStyle.textColor : undefined}
         placeholderColor={props.cardInputStyle ? props.cardInputStyle.placeholderColor : undefined}
