@@ -46,7 +46,7 @@ class ReactCardMultilineView(context: Context) : FrameLayout(context) {
 
   private fun initMultilineWidget(cardMultilineWidget: CardMultilineWidget) {
     cardMultilineWidget.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-    cardMultilineWidget.setCardValidCallback { isValid, invalidFields ->
+    cardMultilineWidget.setCardValidCallback { isValid, _ ->
       val event: WritableMap = Arguments.createMap()
       event.putBoolean("isValid", isValid)
 
