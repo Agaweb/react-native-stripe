@@ -4,7 +4,6 @@
   "description": "Stripe payments for react-native",
   "main": "src/index.js",
   "scripts": {
-    "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods"
@@ -23,12 +22,8 @@
   },
   "homepage": "https://github.com/agaweb/react-native-stripe#readme",
   "devDependencies": {
-    "@react-native-community/eslint-config": "^2.0.0",
-    "eslint": "^7.13.0",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "pod-install": "^0.1.12",
-    "prettier": "^2.1.2",
+    "pod-install": "^0.1.14",
+    "prettier": "^2.2.1",
     "react": "16.13.1",
     "react-native": "0.63.3"
   },
@@ -36,25 +31,6 @@
     "react": "*",
     "react-native": "*"
   },
-  "eslintConfig": {
-    "extends": [
-      "@react-native-community",
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "quoteProps": "consistent",
-          "singleQuote": true,
-          "tabWidth": 2,
-          "trailingComma": "es5",
-          "useTabs": false
-        }
-      ]
-    }
-  },
-  "eslintIgnore": ["node_modules/"],
   "prettier": {
     "quoteProps": "consistent",
     "singleQuote": true,
