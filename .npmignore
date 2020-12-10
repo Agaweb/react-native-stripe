@@ -55,3 +55,6 @@ android/keystores/debug.keystore
 
 # Expo
 .expo/*
+
+# Mine
+example/
