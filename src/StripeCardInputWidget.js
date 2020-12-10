@@ -75,13 +75,13 @@ const StripeCardInputWidget = (props, ref) => {
     <TouchableWithoutFeedback>
       <StripeCardInputWidgetNative
         {...props}
-        postalCodeEntryEnabled={!!props.postalCodeEntryEnabled}
         style={[styles.cardInputWidget, Object.assign({}, props.style)]}
+        postalCodeEntryEnabled={!!props.postalCodeEntryEnabled}
         textColor={props.cardInputStyle ? props.cardInputStyle.textColor : undefined}
         placeholderColor={props.cardInputStyle ? props.cardInputStyle.placeholderColor : undefined}
         borderColor={props.cardInputStyle ? props.cardInputStyle.borderColor : undefined}
         borderWidth={props.cardInputStyle ? props.cardInputStyle.borderWidth : undefined}
-        backgroundColor={props.cardInputStyle ? props.cardInputStyle.backgroundColor : undefined}
+        //backgroundColor={props.cardInputStyle ? props.cardInputStyle.backgroundColor : undefined}
         ref={inputRef}
         onCardValidCallback={_onCardValidCallback}
         onFocusChange={_onFocusChange}

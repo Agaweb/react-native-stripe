@@ -1,7 +1,7 @@
 PODS:
   - AgawebStripe (0.1.1):
     - React
-    - Stripe (~> 20.1)
+    - Stripe (~> 21.1)
   - boost-for-react-native (1.63.0)
   - CocoaAsyncSocket (7.6.4)
   - CocoaLibEvent (1.0.0)
@@ -299,7 +299,7 @@ PODS:
     - React-Core (= 0.63.4)
     - React-cxxreact (= 0.63.4)
     - React-jsi (= 0.63.4)
-  - Stripe (20.1.1)
+  - Stripe (21.1.0)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -352,7 +352,6 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
-  - Stripe
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -428,7 +427,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  AgawebStripe: 5171ba5a66d525b82ed4b9b26ee941675f921975
+  AgawebStripe: 3ea0ebe8dcfd85632c53e41e8d7516164e1cf16f
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
   CocoaLibEvent: 2fab71b8bd46dd33ddb959f7928ec5909f838e3f
@@ -465,10 +464,10 @@ SPEC CHECKSUMS:
   React-RCTText: 5c51df3f08cb9dedc6e790161195d12bac06101c
   React-RCTVibration: ae4f914cfe8de7d4de95ae1ea6cc8f6315d73d9d
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
-  Stripe: 2cb10595133247a96ece092eb0614786c604382f
+  Stripe: 006b519b33936ebd9508bd2ade2311fdbe8bbd4c
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: da83df5bc2d7c702411e90e519d53338a5879a2f
+PODFILE CHECKSUM: 1f18fa8a546d83940b9d8163e3922225f515aef5
 
 COCOAPODS: 1.10.0

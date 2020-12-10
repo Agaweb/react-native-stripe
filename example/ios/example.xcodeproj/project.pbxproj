@@ -11,6 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2BA0A9A725812D410063DD4A /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA0A9A625812D410063DD4A /* Dummy.swift */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -53,6 +54,8 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = example/main.m; sourceTree = "<group>"; };
 		1747DBC9637FF2C47998C2A6 /* libPods-example-exampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example-exampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C793D48E507FF418AEBEBB /* Pods-example-exampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example-exampleTests.debug.xcconfig"; path = "Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2BA0A9A525812D400063DD4A /* example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "example-Bridging-Header.h"; sourceTree = "<group>"; };
+		2BA0A9A625812D410063DD4A /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* example-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "example-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* example-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "example-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31BB08E4A810BC2FB393BF98 /* Pods-example-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example-tvOS.release.xcconfig"; path = "Target Support Files/Pods-example-tvOS/Pods-example-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				2BA0A9A625812D410063DD4A /* Dummy.swift */,
+				2BA0A9A525812D400063DD4A /* example-Bridging-Header.h */,
 			);
 			name = example;
 			sourceTree = "<group>";
@@ -293,7 +298,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1220;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -420,7 +425,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-				"${PODS_ROOT}/Stripe/Stripe/ExternalResources/Stripe3DS2.bundle",
+				"${PODS_ROOT}/Stripe/InternalFrameworks/static/Stripe3DS2.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Stripe/Stripe.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -464,7 +469,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-				"${PODS_ROOT}/Stripe/Stripe/ExternalResources/Stripe3DS2.bundle",
+				"${PODS_ROOT}/Stripe/InternalFrameworks/static/Stripe3DS2.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Stripe/Stripe.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -576,6 +581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				2BA0A9A725812D410063DD4A /* Dummy.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -617,6 +623,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 26C793D48E507FF418AEBEBB /* Pods-example-exampleTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -640,6 +647,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 041DC894CE5ABCBBA1B3A8A4 /* Pods-example-exampleTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = exampleTests/Info.plist;
@@ -674,6 +682,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = example;
+				SWIFT_OBJC_BRIDGING_HEADER = "example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -697,6 +706,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = example;
+				SWIFT_OBJC_BRIDGING_HEADER = "example-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -863,7 +873,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;

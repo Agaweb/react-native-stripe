@@ -1,15 +1,24 @@
 import Foundation
 import Stripe
 
-class RNTStripeCardInputView: STPPaymentCardTextField, STPPaymentCardTextFieldDelegate {
-    @objc
-    var onCardValidCallback: RCTBubblingEventBlock?
+class RNTStripeCardInputView: UIView, STPPaymentCardTextFieldDelegate {
+    let cardTextField = STPPaymentCardTextField()
     
-    @objc
-    var onFocusChange: RCTBubblingEventBlock?
+    @objc var onCardValidCallback: RCTBubblingEventBlock?
     
-    func defaultInitializers(){
-        delegate = self
+    @objc var onFocusChange: RCTBubblingEventBlock?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        cardTextField.frame = self.bounds
+        cardTextField.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        cardTextField.delegate = self
+        self.addSubview(cardTextField)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func paymentCardTextFieldDidBeginEditing(_ textField: STPPaymentCardTextField) {
@@ -35,5 +44,45 @@ class RNTStripeCardInputView: STPPaymentCardTextField, STPPaymentCardTextFieldDe
         }
         
         onCardValidCallback!(params)
+    }
+    
+    @objc func setPostalCodeEntryEnabled(_ enabled: Bool){
+        cardTextField.postalCodeEntryEnabled = enabled
+    }
+    
+    @objc func setTextColor(_ color: UIColor){
+        cardTextField.textColor = color
+    }
+    
+    @objc func setPlaceholderColor(_ color: UIColor){
+        cardTextField.placeholderColor = color
+    }
+    
+    @objc func setBorderColor(_ color: UIColor){
+        cardTextField.borderColor = color
+    }
+    
+    @objc func setBorderWidth(_ width: CGFloat){
+        cardTextField.borderWidth = width
+    }
+    
+    //@objc func setBackgroundColor(_ color: UIColor){
+    //    cardTextField.backgroundColor = color
+    //}
+    
+    @objc func setEnabled(_ enabled: Bool){
+        cardTextField.isEnabled = enabled
+    }
+    
+    func focus(){
+        cardTextField.becomeFirstResponder()
+    }
+    
+    func blur(){
+        cardTextField.resignFirstResponder()
+    }
+    
+    func clear(){
+        cardTextField.clear()
     }
 }

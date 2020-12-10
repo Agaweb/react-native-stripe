@@ -23,7 +23,6 @@ target 'example' do
   end
 
   pod 'AgawebStripe', :path => '../../'
-  pod 'Stripe', :modular_headers => true
 end
 
 target 'example-tvOS' do

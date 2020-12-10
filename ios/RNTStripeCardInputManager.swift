@@ -4,31 +4,26 @@ import Stripe
 @objc(RNTStripeCardInputManager)
 class RNTStripeCardInputManager: RCTViewManager {
     override func view() -> UIView! {
-        let cardTextField = RNTStripeCardInputView()
-        cardTextField.defaultInitializers()
-        return cardTextField
+        return RNTStripeCardInputView()
     }
     
-    @objc(focus:)
-    func focus(reactTag: NSNumber) {
+    @objc func focus(_ reactTag: NSNumber) {
         self.bridge!.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
-            let view: STPPaymentCardTextField = viewRegistry![reactTag] as! STPPaymentCardTextField;
-            view.becomeFirstResponder()
+            let view: RNTStripeCardInputView = viewRegistry![reactTag] as! RNTStripeCardInputView;
+            view.focus()
           }
     }
     
-    @objc(blur:)
-    func blur(reactTag: NSNumber) {
+    @objc func blur(_ reactTag: NSNumber) {
         self.bridge!.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
-            let view: STPPaymentCardTextField = viewRegistry![reactTag] as! STPPaymentCardTextField;
-            view.resignFirstResponder()
+            let view: RNTStripeCardInputView = viewRegistry![reactTag] as! RNTStripeCardInputView;
+            view.blur()
           }
     }
     
-    @objc(clear:)
-    func clear(reactTag: NSNumber) {
+    @objc func clear(_ reactTag: NSNumber) {
         self.bridge!.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
-            let view: STPPaymentCardTextField = viewRegistry![reactTag] as! STPPaymentCardTextField;
+            let view: RNTStripeCardInputView = viewRegistry![reactTag] as! RNTStripeCardInputView;
             view.clear()
           }
     }

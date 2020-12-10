@@ -14,19 +14,16 @@ This module uses the latest iOS Stripe SDK (dropped support for iOS 10) so the m
 
 ```sh
 npm install @agaweb/react-native-stripe
-```
-
-Since the Stripe SDK is still in Objective C, you have to add this to your project Podfile:
-
-```
-pod 'Stripe', :modular_headers => true
-```
-
-And then
-
-```sh
 cd ios && pod install
 ```
+
+### Additional iOS setup
+It must be done or the compilation will fail (the Stripe SDK is now in full Swift)
+
+1. Create the famous "Dummy" swift file (xcode -> open your project -> right click on the folder named after your project, where Info.plist resides -> new File -> Swift -> say <b>YES</b> when asked for the bridgind header)
+2. Remove the swift-5.0 search path, or you will get an error about undefined symbols (try it if you don't believe me), do this -> https://github.com/react-native-community/upgrade-support/issues/62#issuecomment-622985723
+
+Tested with the latest Xcode, I spent a lot of hours finding the 2nd additional step, so if you have an outdated Xcode version or an outdated react-native version, please upgrade.
 
 ## A note about the widget and the manual card validation
 

@@ -9,7 +9,7 @@ class AgawebStripe: NSObject, STPAuthenticationContext {
     
     @objc(initModule:)
     func initModule(publishableKey: String) -> Void {
-        Stripe.setDefaultPublishableKey(publishableKey)
+        StripeAPI.defaultPublishableKey = publishableKey
     }
     
     @objc(confirmPaymentWithCard:withCardParams:withResolver:withRejecter:)
