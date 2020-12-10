@@ -13,10 +13,10 @@ Pod::Spec.new do |s|
   s.platforms    = { :ios => "11.0" }
   s.source       = { :git => "https://github.com/agaweb/react-native-stripe.git", :tag => "#{s.version}" }
 
-  
+
   s.source_files = "ios/**/*.{h,m,mm,swift}"
-  
+
 
   s.dependency "React"
-  s.dependency "Stripe", '~> 21.1'
+  s.dependency "Stripe", '~> 20.1'
 end
