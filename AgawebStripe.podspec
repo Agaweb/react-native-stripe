@@ -18,5 +18,5 @@ Pod::Spec.new do |s|
 
 
   s.dependency "React"
-  s.dependency "Stripe", '~> 20.1'
+  s.dependency "Stripe", '~> 21.1'
 end
