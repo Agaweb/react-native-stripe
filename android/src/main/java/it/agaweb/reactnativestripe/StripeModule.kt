@@ -57,7 +57,7 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
   }
 
   @ReactMethod
-  fun confirmPaymentWithCard(clientSecret: String, cardParams: ReadableMap, promise: Promise) {
+  fun confirmPaymentWithCard(clientSecret: String, cardParams: ReadableMap, savePaymentMethod: Boolean, promise: Promise) {
     val card = PaymentMethodCreateParams.createCard(CardParams(
       cardParams.getString("number")!!,
       cardParams.getInt("expMonth"),
@@ -66,7 +66,7 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
     ))
 
     val confirmParams = ConfirmPaymentIntentParams
-      .createWithPaymentMethodCreateParams(card, clientSecret);
+      .createWithPaymentMethodCreateParams(card, clientSecret, null, savePaymentMethod);
 
     paymentPromise = promise;
     confirmPayment(confirmParams)
