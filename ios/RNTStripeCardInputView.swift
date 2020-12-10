@@ -66,9 +66,9 @@ class RNTStripeCardInputView: UIView, STPPaymentCardTextFieldDelegate {
         cardTextField.borderWidth = width
     }
     
-    //@objc func setBackgroundColor(_ color: UIColor){
-    //    cardTextField.backgroundColor = color
-    //}
+    @objc func setCardBackgroundColor(_ color: UIColor){
+        cardTextField.backgroundColor = color
+    }
     
     @objc func setEnabled(_ enabled: Bool){
         cardTextField.isEnabled = enabled

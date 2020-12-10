@@ -81,7 +81,7 @@ const StripeCardInputWidget = (props, ref) => {
         placeholderColor={props.cardInputStyle ? props.cardInputStyle.placeholderColor : undefined}
         borderColor={props.cardInputStyle ? props.cardInputStyle.borderColor : undefined}
         borderWidth={props.cardInputStyle ? props.cardInputStyle.borderWidth : undefined}
-        //backgroundColor={props.cardInputStyle ? props.cardInputStyle.backgroundColor : undefined}
+        backgroundColor={props.cardInputStyle ? props.cardInputStyle.backgroundColor : undefined}
         ref={inputRef}
         onCardValidCallback={_onCardValidCallback}
         onFocusChange={_onFocusChange}
