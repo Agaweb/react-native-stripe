@@ -14,4 +14,9 @@ RCT_EXTERN_METHOD(confirmPaymentWithPaymentMethodId:(NSString *)clientSecret
                   withResolver:(RCTPromiseResolveBlock)resolve
                   withRejecter:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(confirmSetupWithCard:(NSString *)clientSecret
+                  withCardParams:(NSDictionary *)cardParams
+                  withResolver:(RCTPromiseResolveBlock)resolve
+                  withRejecter:(RCTPromiseRejectBlock)reject)
+
 @end

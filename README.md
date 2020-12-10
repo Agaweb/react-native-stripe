@@ -119,6 +119,28 @@ stripe
     });
 ```
 
+### Module API: confirmSetupWithCard
+
+Confirm Setup Intent using the card details you get from the widget or from anywhere else
+
+```js
+import stripe from '@agaweb/react-native-stripe';
+
+stripe
+    .confirmPaymentWithCard(CLIENT_SECRET, {
+        number: "4242424242424242",
+        expMonth: 02,
+        expYear: 22,
+        cvc: "222",
+    })
+    .then(() => {
+        console.log('Paid');
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+```
+
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
