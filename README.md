@@ -127,7 +127,7 @@ Confirm Setup Intent using the card details you get from the widget or from anyw
 import stripe from '@agaweb/react-native-stripe';
 
 stripe
-    .confirmPaymentWithCard(CLIENT_SECRET, {
+    .confirmSetupWithCard(CLIENT_SECRET, {
         number: "4242424242424242",
         expMonth: 02,
         expYear: 22,
