@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -18,8 +18,13 @@ const App = () => {
   const [cardParams, setCardParams] = useState(undefined);
 
   const pay = () => {
+    const customerToAppend = configuration.customerId
+      ? '&customer=' + configuration.customerId
+      : '';
+
     fetch(
-      'https://api.stripe.com/v1/payment_intents?amount=1099&currency=eur',
+      'https://api.stripe.com/v1/payment_intents?amount=1099&currency=eur' +
+        customerToAppend,
       {
         method: 'POST',
         headers: {
@@ -38,7 +43,7 @@ const App = () => {
               expMonth: cardParams.expMonth,
               expYear: cardParams.expYear,
               cvc: cardParams.cvc,
-            })
+            }, !!customerToAppend)
             .then(() => {
               alert('Paid');
             })
@@ -66,7 +71,7 @@ const App = () => {
             setCardParams(cardParams);
           }}
           style={{
-            marginBottom: 30
+            marginBottom: 30,
           }}
         />
         <TouchableOpacity
