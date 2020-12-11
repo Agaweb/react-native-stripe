@@ -12,9 +12,12 @@ class AgawebStripe: NSObject, STPAuthenticationContext {
         StripeAPI.defaultPublishableKey = publishableKey
     }
     
-    @objc(confirmPaymentWithCard:withCardParams:withResolver:withRejecter:)
-    func confirmPaymentWithCard(clientSecret: String, cardParams: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
-        
+    @objc(confirmPaymentWithCard:withCardParams:withSavePaymentMethod:withResolver:withRejecter:)
+    func confirmPaymentWithCard(clientSecret: String,
+                                cardParams: NSDictionary,
+                                savePaymentMethod: NSNumber,
+                                resolve: @escaping RCTPromiseResolveBlock,
+                                reject: @escaping RCTPromiseRejectBlock) -> Void {
         let stpCardParams = STPCardParams()
         stpCardParams.number = cardParams["number"] as? String
         stpCardParams.expMonth = cardParams["expMonth"] as? UInt ?? 0
@@ -25,6 +28,7 @@ class AgawebStripe: NSObject, STPAuthenticationContext {
         let paymentMethodParams = STPPaymentMethodParams(card: paymentMethodCardParams, billingDetails: nil, metadata: nil)
         let paymentIntentParams = STPPaymentIntentParams(clientSecret: clientSecret)
         paymentIntentParams.paymentMethodParams = paymentMethodParams
+        paymentIntentParams.savePaymentMethod = savePaymentMethod
         
         confirmPayment(paymentIntentParams: paymentIntentParams, resolve: resolve, reject: reject)
     }

@@ -14,7 +14,7 @@ const confirmPaymentWithCard = (
   return AgawebStripe.confirmPaymentWithCard(
     clientSecret,
     cardParams,
-    savePaymentMethod
+    !!savePaymentMethod
   );
 };
 

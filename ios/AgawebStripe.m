@@ -6,6 +6,7 @@ RCT_EXTERN_METHOD(initModule:(NSString *)publishableKey)
 
 RCT_EXTERN_METHOD(confirmPaymentWithCard:(NSString *)clientSecret
                   withCardParams:(NSDictionary *)cardParams
+                  withSavePaymentMethod:(nonnull NSNumber)savePaymentMethod
                   withResolver:(RCTPromiseResolveBlock)resolve
                   withRejecter:(RCTPromiseRejectBlock)reject)
 
