@@ -25,10 +25,21 @@ const confirmPaymentWithPaymentMethodId = (clientSecret, paymentMethodId) => {
   );
 };
 
+const confirmSetupWithCard = (
+  clientSecret,
+  cardParams,
+) => {
+  return AgawebStripe.confirmSetupWithCard(
+    clientSecret,
+    cardParams
+  );
+};
+
 export { StripeCardInputWidget };
 
 export default {
   initModule,
   confirmPaymentWithCard,
   confirmPaymentWithPaymentMethodId,
+  confirmSetupWithCard,
 };
