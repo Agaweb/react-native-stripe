@@ -44,8 +44,7 @@ class AgawebStripe: NSObject, STPAuthenticationContext {
     
     func confirmPayment(paymentIntentParams: STPPaymentIntentParams, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         // Submit the payment
-        let paymentHandler = STPPaymentHandler.shared()
-        paymentHandler.confirmPayment(withParams: paymentIntentParams, authenticationContext: self) {(status, paymentIntent, error) in
+        STPPaymentHandler.shared().confirmPayment(paymentIntentParams, with: self) { (status, paymentIntent, error) in
             switch (status) {
             case .failed:
                 reject("Stripe.Failed", error?.localizedDescription ?? "", nil)
