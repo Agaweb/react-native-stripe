@@ -38,14 +38,53 @@ const App = () => {
           alert(response.error.message);
         } else if (response.client_secret) {
           stripe
-            .confirmPaymentWithCard(response.client_secret, {
+            .confirmPaymentWithCard(
+              response.client_secret,
+              {
+                number: cardParams.number,
+                expMonth: cardParams.expMonth,
+                expYear: cardParams.expYear,
+                cvc: cardParams.cvc,
+              },
+              !!customerToAppend,
+            )
+            .then(() => {
+              alert('Paid');
+            })
+            .catch((err) => {
+              alert(err);
+            });
+        }
+      });
+  };
+
+  const setupIntent = () => {
+    if (!configuration.customerId) alert('Setup a customer id');
+
+    fetch(
+      'https://api.stripe.com/v1/setup_intents?customer=' +
+        configuration.customerId,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer ' + configuration.secretKey,
+        },
+      },
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.error) {
+          alert(response.error.message);
+        } else if (response.client_secret) {
+          stripe
+            .confirmSetupWithCard(response.client_secret, {
               number: cardParams.number,
               expMonth: cardParams.expMonth,
               expYear: cardParams.expYear,
               cvc: cardParams.cvc,
-            }, !!customerToAppend)
+            })
             .then(() => {
-              alert('Paid');
+              alert('Successful setup');
             })
             .catch((err) => {
               alert(err);
@@ -90,6 +129,25 @@ const App = () => {
               fontSize: 20,
             }}>
             Pay
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={setupIntent}
+          disabled={!isValid}
+          style={{
+            backgroundColor: isValid ? 'black' : 'gray',
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingVertical: 15,
+            borderRadius: 10,
+            marginTop: 10,
+          }}>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 20,
+            }}>
+            Setup intent
           </Text>
         </TouchableOpacity>
       </View>
