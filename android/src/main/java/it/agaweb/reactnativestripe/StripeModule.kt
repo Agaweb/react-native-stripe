@@ -7,15 +7,18 @@ import com.stripe.android.ApiResultCallback
 
 import com.stripe.android.PaymentConfiguration
 import com.stripe.android.PaymentIntentResult
+import com.stripe.android.SetupIntentResult
 import com.stripe.android.Stripe
 import com.stripe.android.model.CardParams
 import com.stripe.android.model.ConfirmPaymentIntentParams
+import com.stripe.android.model.ConfirmSetupIntentParams
 import com.stripe.android.model.PaymentMethodCreateParams;
 import com.stripe.android.model.StripeIntent
 
 class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
   private lateinit var paymentPromise: Promise
+  private lateinit var setupPromise: Promise
   private lateinit var stripe: Stripe
   private val activityListener = object : BaseActivityEventListener() {
     override fun onActivityResult(activity: Activity?, requestCode: Int, resultCode: Int, data: Intent?) {
@@ -35,6 +38,25 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
 
         override fun onError(e: Exception) {
           paymentPromise.reject("Stripe.Error", e.toString())
+        }
+      })
+
+      // Handle the result of stripe.confirmSetupIntent
+      stripe.onSetupResult(requestCode, data, object : ApiResultCallback<SetupIntentResult> {
+        override fun onSuccess(result: SetupIntentResult) {
+          val setupIntent = result.intent
+          val status = setupIntent.status
+          if (status == StripeIntent.Status.Succeeded) {
+            setupPromise.resolve(null)
+          } else if (status == StripeIntent.Status.Canceled) {
+            setupPromise.reject("Stripe.Canceled", status.toString())
+          } else {
+            setupPromise.reject("Stripe.OtherStatus", status.toString())
+          }
+        }
+
+        override fun onError(e: Exception) {
+          setupPromise.reject("Stripe.Error", e.toString())
         }
       })
     }
@@ -81,11 +103,35 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
     confirmPayment(confirmParams)
   }
 
+  @ReactMethod
+  fun confirmSetupWithCard(clientSecret: String, cardParams: ReadableMap, promise: Promise) {
+    val card = PaymentMethodCreateParams.createCard(CardParams(
+      cardParams.getString("number")!!,
+      cardParams.getInt("expMonth"),
+      cardParams.getInt("expYear"),
+      cardParams.getString("cvc")
+    ))
+
+    val confirmParams = ConfirmSetupIntentParams
+      .create(card, clientSecret);
+
+    setupPromise = promise;
+    confirmSetupIntent(confirmParams)
+  }
+
   private fun confirmPayment(confirmParams: ConfirmPaymentIntentParams) {
     stripe = Stripe(
       reactApplicationContext,
       PaymentConfiguration.getInstance(reactApplicationContext).publishableKey
     )
     stripe.confirmPayment(currentActivity!!, confirmParams)
+  }
+
+  private fun confirmSetupIntent(confirmParams: ConfirmSetupIntentParams) {
+    stripe = Stripe(
+      reactApplicationContext,
+      PaymentConfiguration.getInstance(reactApplicationContext).publishableKey
+    )
+    stripe.confirmSetupIntent(currentActivity!!, confirmParams)
   }
 }
