@@ -127,7 +127,8 @@ stripe
 ### Module API: confirmCardSetup
 
 Confirm Setup Intent using the card details you get from the widget or from anywhere else<br>
-Both iOS and Android call this name `confirmSetupIntent`, but JS deprecated it, in favor of confirmCardSetup
+Both iOS and Android call this name `confirmSetupIntent`, but JS deprecated it, in favor of confirmCardSetup<br>
+Useful for attach cards to the customer without make a payment
 
 ```js
 import stripe from '@agaweb/react-native-stripe';
