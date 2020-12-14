@@ -88,12 +88,7 @@ Confirm using the card details you get from the widget or from anywhere else
 import stripe from '@agaweb/react-native-stripe';
 
 stripe
-    .confirmPaymentWithCard(CLIENT_SECRET, {
-        number: "4242424242424242",
-        expMonth: 02,
-        expYear: 22,
-        cvc: "222",
-    })
+    .confirmPaymentWithCard(clientSecret, cardParams, savePaymentMethod?)
     .then(() => {
         console.log('Paid');
     })
@@ -101,6 +96,12 @@ stripe
         console.log(err);
     });
 ```
+| Name | Description | Required
+|-|-|-|
+| `clientSecret` | The client secret of the source. Used for client-side retrieval using a publishable key | yes |
+| `cardParams` | Example: <br> `{number: "4242424242424242", expMonth: 02, expYear: 22, cvc: "222",}` | yes |
+| `savePaymentMethod` | Save the payment method to the attached customer (if present). <br> Used to store cards for future payments, especially helpful for confirmPaymentWithPaymentMethodId | no |
+
 
 ### Module API: confirmPaymentWithPaymentMethodId
 
@@ -110,7 +111,7 @@ Confirm using an already present paymentMethodId (ex. reuse cards)
 import stripe from '@agaweb/react-native-stripe';
 
 stripe
-    .confirmPaymentWithPaymentMethodId(CLIENT_SECRET, PAYMENT_METHOD_ID)
+    .confirmPaymentWithPaymentMethodId(clientSecret, paymentMethodId)
     .then(() => {
         console.log('Paid');
     })
@@ -118,6 +119,10 @@ stripe
         console.log(err);
     });
 ```
+| Name | Description | Required
+|-|-|-|
+| `clientSecret` | The client secret of the source. Used for client-side retrieval using a publishable key | yes |
+| `paymentMethodId` | The payment method attached to the customer, you can get a list of the available methods from the Stripe WS | yes |
 
 ## Contributing
 
