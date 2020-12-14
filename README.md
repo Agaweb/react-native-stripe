@@ -124,15 +124,16 @@ stripe
 | `clientSecret` | The client secret of the source. Used for client-side retrieval using a publishable key | yes |
 | `paymentMethodId` | The payment method attached to the customer, you can get a list of the available methods from the Stripe WS | yes |
 
-### Module API: confirmSetupWithCard
+### Module API: confirmCardSetup
 
-Confirm Setup Intent using the card details you get from the widget or from anywhere else
+Confirm Setup Intent using the card details you get from the widget or from anywhere else<br>
+Both iOS and Android call this name `confirmSetupIntent`, but JS deprecated it, in favor of confirmCardSetup
 
 ```js
 import stripe from '@agaweb/react-native-stripe';
 
 stripe
-    .confirmSetupWithCard(clientSecret, cardParams)
+    .confirmCardSetup(clientSecret, cardParams)
     .then(() => {
         console.log('Card Saved');
     })
@@ -142,8 +143,8 @@ stripe
 ```
 | Name | Description | Required
 |-|-|-|
-| `clientSecret` | The client secret of the source. Used for client-side retrieval using a publishable key | yes |
-| `cardParams` | Example: <br> `{number: "4242424242424242", expMonth: 02, expYear: 22, cvc: "222",}` | yes |
+| `clientSecret` | The client secret of the SetupIntent | yes |
+| `cardParams` | Only cardParams for now, paymentMethodId is going to be supported a bit later | yes |
 
 ## Contributing
 

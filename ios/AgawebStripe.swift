@@ -42,8 +42,8 @@ class AgawebStripe: NSObject, STPAuthenticationContext {
         confirmPayment(paymentIntentParams: paymentIntentParams, resolve: resolve, reject: reject)
     }
 
-    @objc(confirmSetupWithCard:withCardParams:withResolver:withRejecter:)
-    func confirmSetupWithCard(clientSecret: String, cardParams: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    @objc(confirmCardSetup:withCardParams:withResolver:withRejecter:)
+    func confirmCardSetup(clientSecret: String, cardParams: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
 
         let stpCardParams = STPCardParams()
         stpCardParams.number = cardParams["number"] as? String

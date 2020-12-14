@@ -25,11 +25,11 @@ const confirmPaymentWithPaymentMethodId = (clientSecret, paymentMethodId) => {
   );
 };
 
-const confirmSetupWithCard = (
+const confirmCardSetup = (
   clientSecret,
   cardParams,
 ) => {
-  return AgawebStripe.confirmSetupWithCard(
+  return AgawebStripe.confirmCardSetup(
     clientSecret,
     cardParams
   );
@@ -41,5 +41,5 @@ export default {
   initModule,
   confirmPaymentWithCard,
   confirmPaymentWithPaymentMethodId,
-  confirmSetupWithCard,
+  confirmCardSetup,
 };

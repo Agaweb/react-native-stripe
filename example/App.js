@@ -77,7 +77,7 @@ const App = () => {
           alert(response.error.message);
         } else if (response.client_secret) {
           stripe
-            .confirmSetupWithCard(response.client_secret, {
+            .confirmCardSetup(response.client_secret, {
               number: cardParams.number,
               expMonth: cardParams.expMonth,
               expYear: cardParams.expYear,
