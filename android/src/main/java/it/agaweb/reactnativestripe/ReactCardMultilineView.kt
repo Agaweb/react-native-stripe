@@ -46,7 +46,8 @@ class ReactCardMultilineView(context: Context) : FrameLayout(context) {
 
   private fun initMultilineWidget(cardMultilineWidget: CardMultilineWidget) {
     cardMultilineWidget.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-   cardMultilineWidget.setCardValidCallback(object: CardValidCallback {
+    
+    val cardValidCallback = object: CardValidCallback {
       override fun onInputChanged(isValid: Boolean, invalidFields: Set<CardValidCallback.Fields>){
         val event: WritableMap = Arguments.createMap()
         event.putBoolean("isValid", isValid)
@@ -69,7 +70,8 @@ class ReactCardMultilineView(context: Context) : FrameLayout(context) {
         (context as ReactContext).getJSModule(RCTEventEmitter::class.java).receiveEvent(id, "onCardValidCallback", event)
       }
 
-    })
+    }
+   cardMultilineWidget.setCardValidCallback(cardValidCallback)
 
     val cardInputListener = object : CardInputListener {
       override fun onCardComplete() {
