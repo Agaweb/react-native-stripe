@@ -1,9 +1,9 @@
 PODS:
-  - AgawebStripe (0.2.0):
+  - AgawebStripe (0.3.0):
     - React
-    - Stripe (~> 21.1)
+    - Stripe (~> 21.2)
   - boost-for-react-native (1.63.0)
-  - CocoaAsyncSocket (7.6.4)
+  - CocoaAsyncSocket (7.6.5)
   - CocoaLibEvent (1.0.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.63.4)
@@ -299,7 +299,9 @@ PODS:
     - React-Core (= 0.63.4)
     - React-cxxreact (= 0.63.4)
     - React-jsi (= 0.63.4)
-  - Stripe (21.1.0)
+  - Stripe (21.2.0):
+    - Stripe/Stripe3DS2 (= 21.2.0)
+  - Stripe/Stripe3DS2 (21.2.0)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -427,9 +429,9 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  AgawebStripe: 3acb77e0bcd18c8e0eddb59201a39e94edbd0009
+  AgawebStripe: 637cec76beb61c226c7c47cd977865a8bb09d0ae
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   CocoaLibEvent: 2fab71b8bd46dd33ddb959f7928ec5909f838e3f
   DoubleConversion: cde416483dac037923206447da6e1454df403714
   FBLazyVector: 3bb422f41b18121b71783a905c10e58606f7dc3e
@@ -464,7 +466,7 @@ SPEC CHECKSUMS:
   React-RCTText: 5c51df3f08cb9dedc6e790161195d12bac06101c
   React-RCTVibration: ae4f914cfe8de7d4de95ae1ea6cc8f6315d73d9d
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
-  Stripe: 006b519b33936ebd9508bd2ade2311fdbe8bbd4c
+  Stripe: 37f742a4815882db4454188664a3aa61793a12b1
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
