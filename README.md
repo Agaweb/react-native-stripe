@@ -65,7 +65,7 @@ export const Test = () => {
 
 | Name | Description | Details |
 |-|-|-|
-| `onCardValidCallback` | Callback which returs `{isValid, cardParams}` <br>- `isValid` gives you the state of the card inserted <br>- `cardParams` contains the `number, expMonth, expYear, cvc` and if enabled `postalCode` | function |
+| `onCardValidCallback` | Callback which returs `{isValid, cardParams}` <br>- `isValid` gives you the state of the card inserted <br>- `cardParams` contains the `number, expMonth, expYear, cvc, brand` and if enabled `postalCode` | function |
 | `enabled` | Enable or disable the inputs | boolean |
 | `postalCodeEntryEnabled` | Enable or disable the visibility of the postal code input | boolean |
 | `cardInputStyle` <br>iOS only | Style applicable only to the ios component, support for: <br>- `textColor` <br>- `placeholderColor` <br>- `borderColor` <br>- `borderWidth` <br>- `backgroundColor` | object |
@@ -99,7 +99,7 @@ stripe
 | Name | Description | Required
 |-|-|-|
 | `clientSecret` | The client secret of the source. Used for client-side retrieval using a publishable key | yes |
-| `cardParams` | Example: <br> `{number: "4242424242424242", expMonth: 02, expYear: 22, cvc: "222",}` | yes |
+| `cardParams` | Example: <br> `{number: "4242424242424242", expMonth: 02, expYear: 22, cvc: "222"}` | yes |
 | `savePaymentMethod` | Save the payment method to the attached customer (if present). <br> Used to store cards for future payments, especially helpful for confirmPaymentWithPaymentMethodId | no |
 
 
