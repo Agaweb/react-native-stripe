@@ -46,27 +46,32 @@ class ReactCardMultilineView(context: Context) : FrameLayout(context) {
 
   private fun initMultilineWidget(cardMultilineWidget: CardMultilineWidget) {
     cardMultilineWidget.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-    cardMultilineWidget.setCardValidCallback { isValid, _ ->
-      val event: WritableMap = Arguments.createMap()
-      event.putBoolean("isValid", isValid)
+    
+    val cardValidCallback = object: CardValidCallback {
+      override fun onInputChanged(isValid: Boolean, invalidFields: Set<CardValidCallback.Fields>){
+        val event: WritableMap = Arguments.createMap()
+        event.putBoolean("isValid", isValid)
 
-      if (isValid) {
-        val params = Arguments.createMap()
-        val typeDataParams = cardMultilineWidget.cardParams!!.typeDataParams
+        if (isValid) {
+          val params = Arguments.createMap()
+          val typeDataParams = cardMultilineWidget.cardParams!!.typeDataParams
 
-        params.putString("number", typeDataParams.get("number") as String)
-        params.putInt("expMonth", typeDataParams.get("exp_month") as Int)
-        params.putInt("expYear", typeDataParams.get("exp_year") as Int)
-        params.putString("cvc", typeDataParams.get("cvc") as String)
+          params.putString("number", typeDataParams.get("number") as String)
+          params.putInt("expMonth", typeDataParams.get("exp_month") as Int)
+          params.putInt("expYear", typeDataParams.get("exp_year") as Int)
+          params.putString("cvc", typeDataParams.get("cvc") as String)
 
-        if (typeDataParams.get("address_zip") != null)
-          params.putString("postalCode", typeDataParams.get("address_zip") as String)
+          if (typeDataParams.get("address_zip") != null)
+            params.putString("postalCode", typeDataParams.get("address_zip") as String)
 
-        event.putMap("cardParams", params)
+          event.putMap("cardParams", params)
+        }
+
+        (context as ReactContext).getJSModule(RCTEventEmitter::class.java).receiveEvent(id, "onCardValidCallback", event)
       }
 
-      (context as ReactContext).getJSModule(RCTEventEmitter::class.java).receiveEvent(id, "onCardValidCallback", event)
     }
+   cardMultilineWidget.setCardValidCallback(cardValidCallback)
 
     val cardInputListener = object : CardInputListener {
       override fun onCardComplete() {
