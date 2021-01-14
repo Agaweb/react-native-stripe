@@ -11,6 +11,7 @@ import com.facebook.react.bridge.WritableMap
 import com.facebook.react.uimanager.events.RCTEventEmitter
 import com.stripe.android.view.CardInputListener
 import com.stripe.android.view.CardMultilineWidget
+import com.stripe.android.view.CardValidCallback
 
 
 class ReactCardMultilineView(context: Context) : FrameLayout(context) {
@@ -46,7 +47,7 @@ class ReactCardMultilineView(context: Context) : FrameLayout(context) {
 
   private fun initMultilineWidget(cardMultilineWidget: CardMultilineWidget) {
     cardMultilineWidget.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-    
+
     val cardValidCallback = object: CardValidCallback {
       override fun onInputChanged(isValid: Boolean, invalidFields: Set<CardValidCallback.Fields>){
         val event: WritableMap = Arguments.createMap()
