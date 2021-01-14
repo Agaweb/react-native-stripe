@@ -35,6 +35,7 @@ class RNTStripeCardInputView: UIView, STPPaymentCardTextFieldDelegate {
             cardParams["expMonth"] = textField.expirationMonth
             cardParams["expYear"] = textField.expirationYear
             cardParams["cvc"] = textField.cvc
+            cardParams["brand"] = STPCardBrandUtilities.stringFrom(STPCardValidator.brand(forNumber: textField.cardNumber!))
             
             if(textField.postalCode != nil){
                 cardParams["postalCode"] = textField.postalCode
