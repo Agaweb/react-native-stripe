@@ -48,6 +48,7 @@ class ReactCardMultilineView(context: Context) : FrameLayout(context) {
   private fun initMultilineWidget(cardMultilineWidget: CardMultilineWidget) {
     cardMultilineWidget.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
+    // Don't convert it to lambda as Android Studio suggest or it will break in kotlin 1.3
     val cardValidCallback = object: CardValidCallback {
       override fun onInputChanged(isValid: Boolean, invalidFields: Set<CardValidCallback.Fields>){
         val event: WritableMap = Arguments.createMap()
@@ -61,6 +62,7 @@ class ReactCardMultilineView(context: Context) : FrameLayout(context) {
           params.putInt("expMonth", typeDataParams.get("exp_month") as Int)
           params.putInt("expYear", typeDataParams.get("exp_year") as Int)
           params.putString("cvc", typeDataParams.get("cvc") as String)
+          params.putString("brand", cardMultilineWidget.card?.brand?.displayName)
 
           if (typeDataParams.get("address_zip") != null)
             params.putString("postalCode", typeDataParams.get("address_zip") as String)
