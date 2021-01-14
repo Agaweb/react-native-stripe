@@ -11,7 +11,7 @@ RCT_EXTERN_METHOD(confirmPaymentWithCard:(NSString *)clientSecret
                   withRejecter:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(confirmPaymentWithPaymentMethodId:(NSString *)clientSecret
-                  withPaymentMethodId(NSString *)paymentMethodId
+                  withPaymentMethodId:(NSString *)paymentMethodId
                   withResolver:(RCTPromiseResolveBlock)resolve
                   withRejecter:(RCTPromiseRejectBlock)reject)
 
