@@ -1,6 +1,6 @@
 {
   "name": "@agaweb/react-native-stripe",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Stripe payments for react-native",
   "main": "src/index.js",
   "scripts": {
