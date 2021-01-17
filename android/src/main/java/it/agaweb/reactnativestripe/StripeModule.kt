@@ -19,11 +19,11 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
 
   private lateinit var paymentPromise: Promise
   private lateinit var setupPromise: Promise
-  private lateinit var stripe: Stripe
+  private var stripe: Stripe? = null
   private val activityListener = object : BaseActivityEventListener() {
     override fun onActivityResult(activity: Activity?, requestCode: Int, resultCode: Int, data: Intent?) {
       // Handle the result of stripe.confirmPayment
-      stripe.onPaymentResult(requestCode, data, object : ApiResultCallback<PaymentIntentResult> {
+      stripe?.onPaymentResult(requestCode, data, object : ApiResultCallback<PaymentIntentResult> {
         override fun onSuccess(result: PaymentIntentResult) {
           val paymentIntent = result.intent
           val status = paymentIntent.status
@@ -42,7 +42,7 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
       })
 
       // Handle the result of stripe.confirmSetupIntent
-      stripe.onSetupResult(requestCode, data, object : ApiResultCallback<SetupIntentResult> {
+      stripe?.onSetupResult(requestCode, data, object : ApiResultCallback<SetupIntentResult> {
         override fun onSuccess(result: SetupIntentResult) {
           val setupIntent = result.intent
           val status = setupIntent.status
@@ -124,7 +124,7 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
       reactApplicationContext,
       PaymentConfiguration.getInstance(reactApplicationContext).publishableKey
     )
-    stripe.confirmPayment(currentActivity!!, confirmParams)
+    stripe?.confirmPayment(currentActivity!!, confirmParams)
   }
 
   private fun confirmSetupIntent(confirmParams: ConfirmSetupIntentParams) {
@@ -132,6 +132,6 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
       reactApplicationContext,
       PaymentConfiguration.getInstance(reactApplicationContext).publishableKey
     )
-    stripe.confirmSetupIntent(currentActivity!!, confirmParams)
+    stripe?.confirmSetupIntent(currentActivity!!, confirmParams)
   }
 }
