@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "example": "yarn --cwd example",
-    "pods": "cd example && pod-install --quiet",
+    "pods": "(cd example/ios && pod repo update && pod update)",
     "bootstrap": "yarn example && yarn && yarn pods"
   },
   "keywords": [
@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/agaweb/react-native-stripe#readme",
   "devDependencies": {
-    "pod-install": "0.1.18",
     "prettier": "^2.2.1",
     "react": "16.13.1",
     "react-native": "0.63.3"
