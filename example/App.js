@@ -83,7 +83,8 @@ const App = () => {
               expYear: cardParams.expYear,
               cvc: cardParams.cvc,
             })
-            .then(() => {
+            .then((data) => {
+              console.log(data);
               alert('Successful setup');
             })
             .catch((err) => {
