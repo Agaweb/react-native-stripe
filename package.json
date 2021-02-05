@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/agaweb/react-native-stripe#readme",
   "devDependencies": {
-    "pod-install": "^0.1.14",
+    "pod-install": "0.1.18",
     "prettier": "^2.2.1",
     "react": "16.13.1",
     "react-native": "0.63.3"
