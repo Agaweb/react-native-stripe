@@ -82,7 +82,7 @@ class AgawebStripe: NSObject, STPAuthenticationContext {
 
     func confirmSetupIntent(setupPaymentIntentParams: STPSetupIntentConfirmParams, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         // Submit the setup
-        STPPaymentHandler.shared().confirmSetupIntent(setupPaymentIntentParams, with: self) {(status, paymentIntent, error) in
+        STPPaymentHandler.shared().confirmSetupIntent(setupPaymentIntentParams, with: self) {(status, setupIntent, error) in
             switch (status) {
             case .failed:
                 reject("Stripe.Failed", error?.localizedDescription ?? "", nil)
@@ -91,7 +91,9 @@ class AgawebStripe: NSObject, STPAuthenticationContext {
                 reject("Stripe.Canceled", error?.localizedDescription ?? "", nil)
                 break
             case .succeeded:
-                resolve(nil);
+                var resolveParams = Dictionary<String, AnyHashable>()
+                resolveParams["paymentMethodId"] = setupIntent?.paymentMethodID
+                resolve(resolveParams);
                 break
             @unknown default:
                 reject("Stripe.Fatal", "Stripe fatal error", nil)

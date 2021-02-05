@@ -47,7 +47,9 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
           val setupIntent = result.intent
           val status = setupIntent.status
           if (status == StripeIntent.Status.Succeeded) {
-            setupPromise.resolve(null)
+            val params = Arguments.createMap()
+            params.putString("paymentMethodId", setupIntent.paymentMethodId)
+            setupPromise.resolve(params)
           } else if (status == StripeIntent.Status.Canceled) {
             setupPromise.reject("Stripe.Canceled", status.toString())
           } else {

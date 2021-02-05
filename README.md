@@ -135,8 +135,8 @@ import stripe from '@agaweb/react-native-stripe';
 
 stripe
     .confirmCardSetup(clientSecret, cardParams)
-    .then(() => {
-        console.log('Card Saved');
+    .then((data) => {
+        console.log('Card Saved', data);
     })
     .catch((err) => {
         console.log(err);
@@ -146,6 +146,10 @@ stripe
 |-|-|-|
 | `clientSecret` | The client secret of the SetupIntent | yes |
 | `cardParams` | Only cardParams for now, paymentMethodId is going to be supported a bit later | yes |
+
+| Result (key) | Description
+|-|-|
+| `paymentMethodId` | Registered method id |
 
 ## Contributing
 
