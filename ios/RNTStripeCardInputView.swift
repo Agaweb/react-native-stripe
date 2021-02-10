@@ -47,6 +47,22 @@ class RNTStripeCardInputView: UIView, STPPaymentCardTextFieldDelegate {
         onCardValidCallback!(params)
     }
     
+    @objc func setNumberPlaceholder(_ placeholder: String){
+        cardTextField.numberPlaceholder = placeholder
+    }
+    
+    @objc func setCvcPlaceholder(_ placeholder: String){
+        cardTextField.cvcPlaceholder = placeholder
+    }
+    
+    @objc func setExpirationPlaceholder(_ placeholder: String){
+        cardTextField.expirationPlaceholder = placeholder
+    }
+    
+    @objc func setPostalCodePlaceholder(_ placeholder: String){
+        cardTextField.postalCodePlaceholder = placeholder
+    }
+    
     @objc func setPostalCodeEntryEnabled(_ enabled: Bool){
         cardTextField.postalCodeEntryEnabled = enabled
     }
