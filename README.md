@@ -69,10 +69,10 @@ export const Test = () => {
 | `enabled` | Enable or disable the inputs | boolean |
 | `postalCodeEntryEnabled` | Enable or disable the visibility of the postal code input | boolean |
 | `cardInputStyle` <br>iOS only | Style applicable only to the ios component, support for: <br>- `textColor` <br>- `placeholderColor` <br>- `borderColor` <br>- `borderWidth` <br>- `backgroundColor` | object |
-| `numberPlaceholder` | | string |
-| `cvcPlaceholder` | | string |
-| `expirationPlaceholder` | | string |
-| `postalCodePlaceholder` | | string |
+| `numberPlaceholder` | Only iOS | string |
+| `cvcPlaceholder` | Only iOS | string |
+| `expirationPlaceholder` | Only iOS | string |
+| `postalCodePlaceholder` | Only iOS | string |
 
 #### Methods (from ref)
 
