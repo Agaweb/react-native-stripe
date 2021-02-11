@@ -22,6 +22,8 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
   private lateinit var stripe: Stripe
   private val activityListener = object : BaseActivityEventListener() {
     override fun onActivityResult(activity: Activity?, requestCode: Int, resultCode: Int, data: Intent?) {
+      if(!::stripe.isInitialized) return;
+
       // Handle the result of stripe.confirmPayment
       stripe.onPaymentResult(requestCode, data, object : ApiResultCallback<PaymentIntentResult> {
         override fun onSuccess(result: PaymentIntentResult) {
