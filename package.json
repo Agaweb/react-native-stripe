@@ -27,8 +27,7 @@
     "react-native": "0.63.3"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
+    "react-native": ">=0.60.0"
   },
   "prettier": {
     "quoteProps": "consistent",
