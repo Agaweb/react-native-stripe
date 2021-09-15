@@ -2,6 +2,7 @@ package it.agaweb.reactnativestripe
 
 import android.app.Activity
 import android.content.Intent
+import androidx.activity.ComponentActivity
 import com.facebook.react.bridge.*
 import com.stripe.android.ApiResultCallback
 
@@ -92,7 +93,7 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
     ))
 
     val confirmParams = ConfirmPaymentIntentParams
-      .createWithPaymentMethodCreateParams(card, clientSecret, null, savePaymentMethod);
+      .createWithPaymentMethodCreateParams(card, clientSecret, savePaymentMethod);
 
     paymentPromise = promise;
     confirmPayment(confirmParams)
@@ -128,7 +129,7 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
       reactApplicationContext,
       PaymentConfiguration.getInstance(reactApplicationContext).publishableKey
     )
-    stripe.confirmPayment(currentActivity!!, confirmParams)
+    stripe.confirmPayment(currentActivity as ComponentActivity, confirmParams)
   }
 
   private fun confirmSetupIntent(confirmParams: ConfirmSetupIntentParams) {
@@ -136,6 +137,6 @@ class StripeModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
       reactApplicationContext,
       PaymentConfiguration.getInstance(reactApplicationContext).publishableKey
     )
-    stripe.confirmSetupIntent(currentActivity!!, confirmParams)
+    stripe.confirmSetupIntent(currentActivity as ComponentActivity, confirmParams)
   }
 }
